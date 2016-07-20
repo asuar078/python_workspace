@@ -2,54 +2,45 @@
   <head>
     <title>{{ title }} - test</title>
 
-		<link rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' type='text/css'>
 
-    <style type="text/css">    
-      body
-      {
-        background-color:#000;
-      }
+    <style type="text/css">
+                #background {
+                        width: 100%;
+                        height: 100%;
+                        position: fixed;
+                        left: 0px;
+                        top: 0px;
+                        z-index: -1;
+                }
 
-      h1
-      {
-        font-size:48px;
-        margin-top:0;
-        font-family:Arial, sans-serif;
-        text-shadow:2px 0 15px #292929;
-        letter-spacing:4px;
-        text-decoration:none;
-        color:#DDD;
-      }
-			h2 {
-				position: absolute; top: 200px; left: 0; width: 100%;  
-			}
+                .stretch {
+                        width:100%;
+                        height:100%;
+                }
+                h1 {
+                        color: #ff6600;
+                     font-family: verdana;
+                     font-size: 400%;
+                        height: 10em;
+                        position: relative }
+                h1 {
 
-      #banner
-      {
-        width:500px;
-        height:200px;
-        text-align:center;
-        background-image:url(http://i.imgur.com/MQHYB.jpg);
-        background-repeat:no-repeat;
-        border-radius:5px;
-        margin:90px auto auto;
-        padding:80px 0;
-      }
-
-      .lead
-      {
-        background-color:rgba(255,255,255,0.6);
-        border-radius:3px;
-        box-shadow:rgba(0,0,0,0.2) 0 1px 3px;
-        font-family:Sintony, sans-serif;
-      }
+                        margin: 0;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        margin-right: -50%;
+                        transform: translate(-50%, -50%) }
     </style>
 
   </head>
   <body>
-      <h1>Hello, {{ user.name }}!</h1>
-			<h2>Test </h2>
+      <h1 class="container4">Test Site!!!<br>  Hits: {{ counter }}</h1>
 
-			<img src="{{url_for('static', filename='site1.jpg')}}" />
+	  <div id="background">
+			<img class="stretch" src="{{url_for('static', filename='site1.jpg')}}" />
+      </div>
+
   </body>
 </html>
