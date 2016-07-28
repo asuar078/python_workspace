@@ -1,31 +1,37 @@
-import sys
-import time
-import socket
+from irc import *
+import argparse
+
 server="irc.freenode.net"
-botnick="thorsWarhammer"
-channel="##testchanneloneagz"
+botnick="thorsHammer"
+channel="##superhiddenchannel576"
 
-#Establish connection 
-irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-irc.connect((server,6667))
-irc.setblocking(False)
-time.sleep(1)
-irc.send("USER "+botnick+" "+botnick+" "+botnick+" :Hello! I am a test bot!\r\n")
-time.sleep(1)
-irc.send("NICK "+botnick+"\n")
-time.sleep(1)
-irc.send("JOIN "+channel+"\n")
+# irc = IRC(server, botnick, channel)
+# irc.connect()
 
-while 1:
-     time.sleep(0.1)
-     try:
-          text=irc.recv(2040)
-          print(text)
-     except Exception:
-          pass
-     if text.find("PING")!=-1:
-          irc.send("PONG "+text.split()[1]+"\r\n")
-     if text.lower().find(":@hi")!=-1:
-          irc.send("PRIVMSG "+channel+" :Hello!\r\n")
-     text=""
-input()
+def do_something():
+    print("doing something")
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', 'server', type=str, required=True)
+    parser.add_argument('n', 'nickname', type=str, required=True)
+    parser.add_argument('c', 'channel', help="a nickname or channel", type=str, required=True)
+    parser.add_argument('-p', '--port', default=6667, type=int)
+    return parser.parse_args()
+
+def main():
+
+    while 1:
+        time.sleep(0.1)
+        try:
+            text = irc.get_text()
+            print(text)
+        except Exception:
+            pass
+
+        if "PRIVMSG" in text and channel in text and "hello" in text:
+                irc.send(channel, "Hello!")
+                text =""
+
+if __name__ == "__main__":
+    main()
