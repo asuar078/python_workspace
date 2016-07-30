@@ -1,9 +1,13 @@
 from irc import *
+import random
 import argparse
+
+rand = random.randint(1, 9999)  # Integer from 1 to 10, endpoints included
+print rand
 
 # Connection parameters
 server="irc.freenode.net"
-botnick="TestBot9919"
+botnick="TestBot" + str(rand)
 channel="##superhiddenchannel576"
 
 # password to accept commands
@@ -11,14 +15,15 @@ password="@!!@"
 
 irc = IRC(server, botnick, channel) # create irc object
 irc.connect() # connect to server
+irc.send(channel, "New Bot Online!")
 
 # """
 # Command functions
 # """
 
-def do_something():
-    print("doing something")
-    irc.send(channel, "Doing it!")
+def roll_call():
+    print("Roll Call: Here!")
+    irc.send(channel, "Here!")
 
 def say_hello():
     print("Hello!")
@@ -51,8 +56,8 @@ def main():
 
                 if str(commands[0]) == "hi":
                     say_hello()
-                if str(commands[0]) == "something":
-                    do_something()
+                if str(commands[0]) == "RollCall":
+                    roll_call()
 
                 print "found it"
                 text =""
