@@ -79,7 +79,7 @@ def launch_http(target_ip, target_port, num_of_attacks):
     print "Launching HTTP flood"
     try:
         global extProc
-        extProc = sp.Popen(['python','ddos.py', str(target_ip), str(target_port), str(num_of_attacks)])
+        extProc = sp.Popen(['python','httpflood.py', str(target_ip), str(target_port), str(num_of_attacks)])
         status = sp.Popen.poll(extProc) # status should be 'None'
         if status == None:
             print status
