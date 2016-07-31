@@ -18,15 +18,23 @@
 
 import subprocess as sp
 
-extProc = sp.Popen(['python','myPyScript.py']) # runs myPyScript.py 
+extProc = sp.Popen(['python','myPyScript.py', "hello"]) # runs myPyScript.py 
 
 status = sp.Popen.poll(extProc) # status should be 'None'
 
 print status
+try:
+    while 1:
+        status = sp.Popen.poll(extProc) # status should be 'None' 
+        print status
 
-sp.Popen.terminate(extProc) # closes the process
-sp.Popen.wait(extProc) # closes the process
+except KeyboardInterrupt:
+    print "KeyboardInterrupt"
+finally:
+        # clean up
+    sp.Popen.terminate(extProc) # closes the process
+    sp.Popen.wait(extProc) # closes the process
 
-status = sp.Popen.poll(extProc) # status should now be something other than 'None' ('1' in my testing)
+    status = sp.Popen.poll(extProc) # status should now be something other than 'None' ('1' in my testing)
 
-print status
+    print status
