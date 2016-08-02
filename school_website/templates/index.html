@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>{{ title }} - test</title>
+
+    <link rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+                #background {
+                        width: 100%;
+                        height: 100%;
+                        position: fixed;
+                        left: 0px;
+                        top: 0px;
+                        z-index: -1;
+                }
+
+                .stretch {
+                        width:100%;
+                        height:100%;
+                }
+                h1 {
+                        color: #ff6600;
+                     font-family: verdana;
+                     font-size: 400%;
+                        height: 10em;
+                        position: relative }
+                h1 {
+
+                        margin: 0;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        margin-right: -50%;
+                        transform: translate(-50%, -50%) }
+    </style>
+
+  </head>
+  <body>
+      <h1 class="container4">Test Site!!!<br>  Hits: {{ counter }}</h1>
+
+	  <div id="background">
+			<img class="stretch" src="{{url_for('static', filename='site1.jpg')}}" />
+      </div>
+
+  </body>
+</html>
